@@ -1,3 +1,5 @@
 /target
 venv
 simple.xml
+*.bracket
+*.py
