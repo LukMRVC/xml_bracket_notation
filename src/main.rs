@@ -1,7 +1,7 @@
 use std::ffi::OsStr;
 use std::fs::File;
 use std::io::{BufRead, BufReader, BufWriter, Write};
-use std::path::{Path, PathBuf};
+use std::path::PathBuf;
 
 use clap::{Parser, Subcommand};
 use quick_xml::events::Event;
@@ -34,10 +34,10 @@ enum Commands {
 
 #[inline(always)]
 fn safe_trans(s: String) -> String {
-    let s = s.replace("{", r#"\{"#);
-    let s = s.replace("}", r#"\}"#);
-    let s = s.replace(r#"\"#, r#"\\}"#);
-    return s;
+    let s = s.replace('{', r"\{");
+    let s = s.replace('}', r"\}");
+
+    s.replace('\\', r"\\}")
 }
 
 fn convert_file(filepath: &PathBuf, filename: &OsStr) -> std::io::Result<()> {
@@ -103,7 +103,7 @@ fn convert_file(filepath: &PathBuf, filename: &OsStr) -> std::io::Result<()> {
                 }
                 depth -= 1;
                 if depth == 1 {
-                    write!(writer, "\n")?;
+                    writeln!(writer)?;
                     trees += 1;
 
                     if trees % 100_000 == 0 {
@@ -155,6 +155,6 @@ fn path_exists(path: &str) -> Result<PathBuf, String> {
     if path.exists() {
         Ok(path)
     } else {
-        Err(format!("File not found!"))
+        Err("File not found!".to_string())
     }
 }
