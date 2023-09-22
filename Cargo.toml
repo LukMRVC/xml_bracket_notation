@@ -5,7 +5,11 @@ edition = "2021"
 authors = ["Lukas Moravec <sydnexpklover@gmail.com>"]
 license = "MIT"
 description = "Simple tool for converting XML into bracket notation used for Trees."
-readme = "README.md"
+readme = "readme.md"
+homepage = "https://github.com/LukMRVC/xml_bracket_notation"
+repository = "https://github.com/LukMRVC/xml_bracket_notation"
+keywords = ["bracket", "notation", "xml", "tree"]
+categories = ["command-line-utilities", "development-tools"]
 
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
